@@ -7,7 +7,10 @@ class Signal:
     def decode(self):
         lrulist = []
         lruindex = 0
-        for index, somechar in enumerate(self.code):
+        index = 0
+        stopindex = 0
+        while index < len(self.code):
+            somechar = self.code[index]
             if somechar not in lrulist:
                 lrulist.append(somechar)
                 lruindex += 1
@@ -21,7 +24,8 @@ class Signal:
                 print('')
                 print(f"Found already char {somechar} at position {lruindex+1}, resetting...")
                 print(somechar, end='')
-                lruindex = 1
+                stopindex += 1
+                lruindex = stopindex
                 lrulist = [somechar]
 
 if __name__ == "__main__":
